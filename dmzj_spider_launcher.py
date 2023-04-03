@@ -47,18 +47,13 @@ def download_episode(manga_name, num, url):
         lst = lst[0].split(i)
     url = lst[0].replace('\\/', '/')
     new_url = ''
-    print(url)
-    type_2 = regex.findall(r'%..(\d\d)%..', url)
-    if len(type_2) > 0:
-        for i in type_2:
-            print(i)
-    for i in range(len(url) - 1, len(url) - 10, -1):
+    for i in range(len(url) - 1, len(url) - 5, -1):
         if url[i].isdigit() == False or url[i] == '/':
             break
         else:
             new_url = url[0:i]
     url = new_url
-    print(num)
+    download_pages(manga_name, num, 'https://images.idmzj.com/' + url)
 
 def start(manga_url, manga_name):
     rq = requests.get(manga_url)
@@ -74,3 +69,7 @@ manga_url = input()
 print("请输入希望创建的漫画文件夹名称：")
 manga_name = input()
 start(manga_url, manga_name)
+
+
+
+
